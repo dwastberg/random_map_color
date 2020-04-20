@@ -24,6 +24,7 @@ def get_random_colors(n, h_range=(0.0, 1.0), s_range=(0.2, 1.0), v_range=(0.6, 1
         (random.uniform(*h_range), random.uniform(*s_range), random.uniform(*v_range))
         for r in range(10 * n)
     ]
+    selected_colors = []
     selected_colors.append(sample_space.pop())
     # find the color in our sample space that maximizes the minimum distance too all the already select colors.
     for i in range(n - 1):
@@ -49,7 +50,7 @@ def _dh(h1, h2):
 def _Dc(c1, c2):
     h1, s1, v1 = c1
     h2, s2, v2 = c2
-    return sqrt(dh(h1, h2) ** 2 + (s1 - s2) ** 2 + (v1 - v2) ** 2)
+    return sqrt(_dh(h1, h2) ** 2 + (s1 - s2) ** 2 + (v1 - v2) ** 2)
 
 
 def Dvr(c1, c2):
